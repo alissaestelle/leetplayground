@@ -53,3 +53,18 @@ const maxWealth = (accounts) => {
 //   [1, 9, 5]
 // ])
 // console.log(`Solution: ${solution}`)
+
+// #2011 Solve Time (No Google/Hints):
+const opsValue = (operations) => {
+  let final = operations.reduce((acc, elem) => {
+    let value = 0
+    elem.toLowerCase() === 'x++' || elem.toLowerCase() === '++x'
+      ? value++
+      : value--
+    return acc + value
+  }, 0)
+  return final
+}
+
+let solution = opsValue(['--X', 'X++', '++X'])
+console.log(`Solution: ${solution}`)
