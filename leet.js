@@ -54,7 +54,7 @@ const maxWealth = (accounts) => {
 // ])
 // console.log(`Solution: ${solution}`)
 
-// #2011 Solve Time (No Google/Hints):
+// #2011 Solve Time (No Google/Hints): 30mins
 const opsValue = (operations) => {
   let final = operations.reduce((acc, elem) => {
     let value = 0
@@ -66,5 +66,21 @@ const opsValue = (operations) => {
   return final
 }
 
-let solution = opsValue(['--X', 'X++', '++X'])
-console.log(`Solution: ${solution}`)
+// let solution = opsValue(['--X', 'X++', '++X'])
+// console.log(`Solution: ${solution}`)
+
+// #2114 Solve Time (No Google/Hints): 1.5hrs
+const mostWords = (sentences) => {
+  let most = 0
+  sentences.forEach((sentence, idx) => {
+    let words = sentence.split(' ')
+    if (words.length >= most) most = words.length
+  })
+  return most
+}
+// let solution = mostWords([
+//   'I love LeetCode but I also like swimming',
+//   'I do too',
+//   'I think I like both'
+// ])
+// console.log(`Solution: ${solution}`)
