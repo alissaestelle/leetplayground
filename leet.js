@@ -379,3 +379,20 @@ const getFlips = (n) => {
 }
 
 // console.log(getFlips(4))
+
+// #412 Solve Time (No Google/Hints): 30mins
+const fizzBuzz = (n, arr = [], idx = 0) => {
+  if (idx === n) return arr
+  arr.push(`${idx + 1}`)
+  arr[idx] % 3 === 0 && arr[idx] % 5 === 0
+    ? (arr[idx] = 'FizzBuzz')
+    : arr[idx] % 3 === 0
+    ? (arr[idx] = 'Fizz')
+    : arr[idx] % 5 === 0
+    ? (arr[idx] = 'Buzz')
+    : (arr[idx] = `${arr[idx]}`)
+
+  return fizzBuzz(n, arr, idx + 1)
+}
+
+console.log(fizzBuzz(15))
