@@ -353,6 +353,7 @@ const flipCoins = (num, arr = null, count = 1) => {
     arr.forEach((elem, idx) => {
       idx % 2 === 0 ? (arr[idx] += tails) : (arr[idx] += heads)
     })
+    // Replace only works for strings
     arr[0] = arr[0].replace(tails, heads)
     arr[mid] = arr[mid].replace(heads, tails)
   }
@@ -390,9 +391,36 @@ const fizzBuzz = (n, arr = [], idx = 0) => {
     ? (arr[idx] = 'Fizz')
     : arr[idx] % 5 === 0
     ? (arr[idx] = 'Buzz')
-    : (arr[idx] = `${arr[idx]}`)
+    : arr[idx]
 
   return fizzBuzz(n, arr, idx + 1)
 }
 
-console.log(fizzBuzz(15))
+// console.log(fizzBuzz(15))
+
+// Bubble Sort TBC:
+const bubbleSort = (arr) => {
+  let swapHappened = true
+
+  if (swapHappened) {
+    arr.forEach((elem, idx) => {
+      swapHappened = false
+      let outer = elem
+      let oIdx = idx
+      arr.forEach((elem, idx) => {
+        let inner = elem
+        let iIdx = idx
+        if (outer < inner) {
+          // Single Line Method to Swap Items in Array
+          ;[arr[oIdx], arr[iIdx]] = [arr[iIdx], arr[oIdx]]
+          swapHappened = true
+        }
+      })
+    })
+  }
+  return arr
+}
+
+const solution = bubbleSort([4, 10, 2, 8, 6])
+// [4, 10, 2, 8, 6]
+console.log(solution)
