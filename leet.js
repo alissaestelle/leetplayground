@@ -112,18 +112,6 @@ let ansOne = twoSum(odds, 9)
 // console.log('Answer One: ')
 // console.log(ansOne)
 
-let ansTwo = twoSum(zeros, 0)
-// console.log('Answer Two: ')
-// console.log(ansTwo)
-
-let ansThree = twoSum(negatives, 1)
-// console.log('Answer Three: ')
-// console.log(ansThree)
-
-let ansFour = twoSum(hundreds, 100)
-// console.log('Answer Four: ')
-// console.log(ansFour)
-
 // #167 Optimized Solution (Piero):
 const twoPointers = (numbers, target) => {
   let addends = []
@@ -189,20 +177,6 @@ const isPathCrossing = (path) => {
 // Note: 0, null, undefined & NaN are inherently falsey but become truthy when combined with a bang operator. Likewise, all numbers other than 0 are inherently truthy but become falsey when combined with a bang operator.
 
 // On the second call, mid replaces null as the value for last. Since mid = 3, it inherently equates to true. When this true value reaches the if statement, it does *not* pass the conditional because the opposite of true is ... false!
-
-// See Recursive Fx Below:
-
-const binarySearch = (arr, item, first = 0, last = null) => {
-  if (!last) last = arr.length
-  let mid = Math.floor((last - first) / 2) + first
-  // Base Case:
-  if (arr[mid] === item) return mid
-  // Recursive Case(s):
-  if (arr[mid] > item) return binarySearch(arr, item, first, mid)
-  if (arr[mid] < item) return binarySearch(arr, item, mid, last)
-}
-
-// console.log(binarySearch([1, 3, 5, 7, 9, 11, 13], 5))
 
 const pathRecursion = (
   arr,
@@ -282,105 +256,6 @@ const fibonacci = (n, count = 3, first = 1, second = 1, sum = 1) => {
 
 // console.log(fibonacci(7))
 
-// const coinFlips = (num, arr = null, count = 1) => {
-//   let heads = 'H'
-//   let tails = 'T'
-//   let total = num * 2
-//   let mid = total / 2
-
-//   if (!arr) arr = Array(num * 2).fill('')
-//   if (num <= 1) return []
-//   if (count > num) return arr
-
-//   count === 1 &&
-//     arr.forEach((elem, idx) => {
-//       return idx < mid
-//         ? (arr[idx] = arr[idx] + heads)
-//         : (arr[idx] = arr[idx] + tails)
-//     })
-//   console.log(arr)
-
-//   switch (count) {
-//     case count % 2 === 0:
-//       arr.forEach((elem, idx) => {
-//         return idx % 2 === 0
-//           ? (arr[idx] = arr[idx] + heads)
-//           : (arr[idx] = arr[idx] + tails)
-//       })
-//       break
-//     case count > 1 && count % 2 !== 0:
-//       arr.forEach((elem, idx) => {
-//         return idx % 2 === 0
-//           ? (arr[idx] = arr[idx] + tails)
-//           : (arr[idx] = arr[idx] + heads)
-//       })
-//     default:
-//       break
-//   }
-// This function returns an array of all possible outcomes from flipping a coin N times.
-// For example, coinFlips(2) would return the following:
-// ["HH", "HT", "TH", "TT"]
-// H stands for Heads and T stands for tails
-// Represent the two outcomes of each flip as "H" or "T"
-//   return coinFlips(num, arr, count + 1)
-// }
-
-const flipCoins = (num, arr = null, count = 1) => {
-  let heads = 'H'
-  let tails = 'T'
-  let total = num * 2
-  let mid = total / 2
-
-  if (!arr) {
-    arr = Array(total).fill('')
-    arr.forEach((elem, idx) => {
-      return idx < mid
-        ? (arr[idx] = arr[idx] + heads)
-        : (arr[idx] = arr[idx] + tails)
-    })
-  }
-
-  if (num === 0) return []
-  if (count > num) return arr
-
-  if (count % 2 !== 0) {
-    arr.forEach((elem, idx) => {
-      idx % 2 === 0 ? (arr[idx] += heads) : (arr[idx] += tails)
-    })
-  }
-
-  if (count % 2 === 0) {
-    arr.forEach((elem, idx) => {
-      idx % 2 === 0 ? (arr[idx] += tails) : (arr[idx] += heads)
-    })
-    // Replace only works for strings
-    arr[0] = arr[0].replace(tails, heads)
-    arr[mid] = arr[mid].replace(heads, tails)
-  }
-
-  return flipCoins(num, arr, count + 1)
-}
-
-// console.log(flipCoins(4))
-
-// Stack Overflow Solution:
-const getFlips = (n) => {
-  const addFlips = (n, result, current) => {
-    if (n === 1) {
-      result.push(current + 'H')
-      result.push(current + 'T')
-    } else {
-      addFlips(n - 1, result, current + 'H')
-      addFlips(n - 1, result, current + 'T')
-    }
-  }
-  let result = []
-  addFlips(n, result, '')
-  return result
-}
-
-// console.log(getFlips(4))
-
 // #412 Solve Time (No Google/Hints): 30mins
 const fizzBuzz = (n, arr = [], idx = 0) => {
   if (idx === n) return arr
@@ -398,29 +273,132 @@ const fizzBuzz = (n, arr = [], idx = 0) => {
 
 // console.log(fizzBuzz(15))
 
-// Bubble Sort TBC:
-const bubbleSort = (arr) => {
-  let swapHappened = true
+// Prime Numbers in 2D Array:
+let table = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+]
 
-  if (swapHappened) {
-    arr.forEach((elem, idx) => {
-      swapHappened = false
-      let outer = elem
-      let oIdx = idx
-      arr.forEach((elem, idx) => {
-        let inner = elem
-        let iIdx = idx
-        if (outer < inner) {
-          // Single Line Method to Swap Items in Array
-          ;[arr[oIdx], arr[iIdx]] = [arr[iIdx], arr[oIdx]]
-          swapHappened = true
-        }
-      })
+console.table(table)
+
+const transpose = (matrix) => {
+  // Destructured Array:
+  let [row] = matrix
+  let column
+  let newArr
+  row.map((value, idx) => {
+    column = idx
+    console.log(value)
+    newArr = matrix.map((elem, idx) => {
+      return elem[column]
     })
-  }
-  return arr
+    return newArr
+  })
+  return newArr
 }
 
-const solution = bubbleSort([4, 10, 2, 8, 6])
-// [4, 10, 2, 8, 6]
-console.log(solution)
+console.log(transpose(table))
+
+// const findPrime = (arr) => {
+//   const str = ''
+//   const l = arr.length
+//   let totals = {}
+//   let charI = 64
+//   let charJ = charI + 1
+
+//   arr.forEach((row, idx) => {
+//     let outer = idx
+//     ++charI
+//     ++charJ
+//     let i = String.fromCharCode(charI)
+//     let j = String.fromCharCode(charJ)
+
+//     let h2 = `${row[0]}` + `${row[1]}`
+//     totals[i] = parseInt(h2)
+//     ++charI
+
+//     let h3 = `${h2}` + `${row[2]}`
+//     totals[j] = parseInt(h3)
+//     ++charJ
+
+//     arr.forEach((elem, idx) => {
+//       let inner = idx
+//       if (outer === inner) return false
+//       let v2 = `${row[0]}` + `${elem[0]}`
+//       console.log(elem)
+//       console.log(`V2: ${v2}`)
+//       console.log(totals)
+//     })
+//   })
+//   return arr
+// }
+
+// console.log(findPrime(table))
+// console.log(`First: ${row}`)
+// console.log(outer)
+// console.log(h2)
+// console.log(h3)
+// console.log(inner)
+
+// Optimize Box Weights
+// Intersection of A & B is null.
+// Sum of A & B are equal to original array.
+// Number of elems in subset A is minimal.
+// The sum of A's weights is greater than the sum of B's weights.
+
+// Ex: n = 5; arr = [3, 7, 5, 6, 2]
+// Two subsets in arr that satisfy the conditions for A are: [5, 7] and [6, 7]:
+// A is minimal (size 2)
+// Sum(A) = (5 + 7) = 12 > Sum(B) = (2 + 3 + 6) = 11
+// Sum(A) = (6 + 7) = 13 > Sum(B) = (2 + 3 + 5) = 10
+// The intersection of A and B is null and their union is equal to arr.
+// The subset A where the sum of its weight is maximal is [6, 7]
+
+// Constraints:
+// 1 <= n <= 10^5
+// 1 <= arr[i] <= 10^5 (where 0 <= i < n)
+
+const minHeaviestSet = (arr) => {
+  arr = arr.sort()
+  let mid = arr.length
+  let a = []
+  let b = []
+  let c = []
+  let i = 0
+  let j = arr.length - 1
+
+  while (i <= j) {
+    arr[i] >= mid ? a.push(arr[i]) : b.push(arr[i])
+    // if (arr[i] === arr[j]) a.pop()
+    i++
+  }
+
+  a.filter((elem, idx) => {
+    let max = 0
+    if (idx === a.length - 1) return false
+    let sum = a[idx] + a[idx + 1]
+    if (sum > max) {
+      max = sum
+      c[0] = a[idx]
+      c[1] = a[idx + 1]
+    }
+    return c
+  })
+  return c
+}
+
+// console.log(minHeaviestSet([3, 7, 5, 6, 2]))
+
+// Items in Containers
+// A string (s) consists of items (*) and compartments (|)
+// |*| indicates a closed compartment and |*|* indicates an open one.
+// An array (startIndices) containing the first index of each iteration.
+// An array (endIndices) containing the last index of each iteration.
+
+// Ex: s = `|**|*|*`
+// startIndices = [1, 1]
+// endIndices = [5, 6]
+// The string has a total of two closed compartments, one with 2 items and one with 1 item.
+// The first set ([1, 5]) contains 2 items, so the current item total is 2. The second set ([1, 6]) contains the 2 previous items from the first set, plus 1 item in the second set, so the total number of items is now 3.
+// Each successive sum is returned in an array: [2, 3].
